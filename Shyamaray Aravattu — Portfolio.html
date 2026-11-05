@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Shyamaray Aravattu — AI Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+
+  --bg:#0F1320; --surface:#161B2C; --surface-2:#1B2138; --border:#2A3150;
+  --text:#EAEDF6; --text-muted:#97A0B8;
+  --accent:#F2A63D; --accent-ink:#1C1204;
+  --accent-2:#7C8CFF; --accent-2-soft:rgba(124,140,255,.14);
+  --r-s:6px; --r-m:14px; --r-l:999px;
+  --font-head:'Space Grotesk',ui-sans-serif,system-ui,sans-serif;
+  --font-body:'Inter',ui-sans-serif,system-ui,-apple-system,sans-serif;
+  --font-mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+:root[data-theme="dark"]{ --bg:#0F1320; --surface:#161B2C; --surface-2:#1B2138; --border:#2A3150; --text:#EAEDF6; --text-muted:#97A0B8; --accent:#F2A63D; --accent-ink:#1C1204; --accent-2:#7C8CFF; --accent-2-soft:rgba(124,140,255,.14); }
+@media (prefers-color-scheme:light){
+  :root:not([data-theme="dark"]){ --bg:#F7F6F2; --surface:#FFFFFF; --surface-2:#F0EEE7; --border:#E3E0D6; --text:#181A20; --text-muted:#5B5F6E; --accent:#B8650A; --accent-ink:#FFF7EC; --accent-2:#3E4BC4; --accent-2-soft:rgba(62,75,196,.10); }
+}
+:root[data-theme="light"]{ --bg:#F7F6F2; --surface:#FFFFFF; --surface-2:#F0EEE7; --border:#E3E0D6; --text:#181A20; --text-muted:#5B5F6E; --accent:#B8650A; --accent-ink:#FFF7EC; --accent-2:#3E4BC4; --accent-2-soft:rgba(62,75,196,.10); }
+
+html{ scroll-behavior:smooth; scroll-padding-top:calc(70px + env(safe-area-inset-top,0px)); box-sizing:border-box; height:100%; }
+*,*::before,*::after{ box-sizing:inherit; }
+body{ margin:0; min-height:100%; background:var(--bg); color:var(--text); font-family:var(--font-body); line-height:1.55; -webkit-font-smoothing:antialiased; }
+img{ max-width:100%; display:block; }
+a{ color:inherit; }
+.wrap{ max-width:1120px; margin:0 auto; padding:0 28px; }
+h1,h2,h3{ font-family:var(--font-head); font-weight:600; line-height:1.15; margin:0; letter-spacing:-0.01em; }
+section{ padding:96px 0; border-top:1px solid var(--border); overflow-x:auto; }
+section:first-of-type{ border-top:none; }
+p{ margin:0; }
+.eyebrow{ font-family:var(--font-body); font-size:14px; color:var(--text-muted); margin-bottom:10px; }
+.muted{ color:var(--text-muted); }
+
+/* nav */
+nav{ position:sticky; top:env(safe-area-inset-top,0px); z-index:50; backdrop-filter:blur(10px); background:color-mix(in srgb, var(--bg) 78%, transparent); border-bottom:1px solid var(--border); }
+.navrow{ display:flex; align-items:center; justify-content:space-between; height:70px; }
+.brand{ font-family:var(--font-head); font-weight:600; font-size:17px; text-decoration:none; }
+.navlinks{ display:flex; gap:28px; list-style:none; margin:0; padding:0; }
+.navlinks a{ text-decoration:none; font-size:14.5px; color:var(--text-muted); transition:color .15s; }
+.navlinks a:hover{ color:var(--text); }
+.navtoggle{ display:none; background:none; border:none; color:var(--text); font-size:22px; cursor:pointer; }
+@media (max-width:760px){
+  .navlinks{ position:absolute; top:70px; left:0; right:0; background:var(--surface); flex-direction:column; gap:0; padding:8px 28px; border-bottom:1px solid var(--border); display:none; }
+  .navlinks.open{ display:flex; }
+  .navlinks a{ padding:14px 0; border-bottom:1px solid var(--border); }
+  .navlinks a:last-child{ border-bottom:none; }
+  .navtoggle{ display:block; }
+}
+
+/* buttons */
+.btn{ display:inline-flex; align-items:center; gap:8px; padding:12px 22px; border-radius:var(--r-l); font-size:14.5px; font-weight:500; text-decoration:none; border:1px solid transparent; transition:transform .15s, opacity .15s; }
+.btn:hover{ transform:translateY(-1px); }
+.btn-solid{ background:var(--accent); color:var(--accent-ink); }
+.btn-outline{ border-color:var(--border); color:var(--text); }
+.btn-outline:hover{ border-color:var(--accent-2); }
+
+/* hero */
+.hero{ padding:76px 0 88px; position:relative; }
+.hero::before{ content:""; position:absolute; inset:0; background-image:radial-gradient(color-mix(in srgb, var(--accent-2) 30%, transparent) 1px, transparent 1px); background-size:26px 26px; opacity:.25; mask-image:linear-gradient(to bottom, black, transparent 75%); pointer-events:none; }
+.hero-grid{ display:grid; grid-template-columns:1.15fr 1fr; gap:56px; align-items:center; position:relative; }
+@media (max-width:860px){ .hero-grid{ grid-template-columns:1fr; } }
+.hero h1{ font-size:clamp(32px,4.4vw,50px); margin-bottom:18px; max-width:14ch; }
+.hero-sub{ font-size:17px; color:var(--text-muted); max-width:52ch; margin-bottom:30px; }
+.hero-cta{ display:flex; gap:14px; flex-wrap:wrap; margin-bottom:28px; }
+.hero-meta{ display:flex; gap:18px; flex-wrap:wrap; font-size:13.5px; color:var(--text-muted); }
+
+/* terminal */
+.term{ background:var(--surface); border:1px solid var(--border); border-radius:var(--r-m); overflow:hidden; box-shadow:0 24px 48px -24px rgba(0,0,0,.5); }
+.term-bar{ display:flex; gap:7px; padding:12px 16px; border-bottom:1px solid var(--border); }
+.term-bar span{ width:10px; height:10px; border-radius:50%; background:var(--border); }
+.term-body{ padding:20px; font-family:var(--font-mono); font-size:13.5px; }
+.term-line{ margin-bottom:14px; }
+.term-tag{ color:var(--accent-2); }
+.term-q{ color:var(--text); }
+.term-a{ color:var(--text-muted); }
+.cursor{ display:inline-block; width:7px; height:14px; background:var(--accent); vertical-align:middle; margin-left:2px; animation:blink 1s steps(1) infinite; }
+@keyframes blink{ 50%{ opacity:0; } }
+@media (prefers-reduced-motion:reduce){ .cursor{ animation:none; } }
+
+/* about stats */
+.about-grid{ display:grid; grid-template-columns:1.3fr 1fr; gap:56px; }
+@media (max-width:860px){ .about-grid{ grid-template-columns:1fr; } }
+.about-grid p{ font-size:16.5px; color:var(--text-muted); max-width:60ch; }
+.stats{ display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+.stat b{ display:block; font-family:var(--font-head); font-size:30px; color:var(--accent); }
+.stat span{ font-size:13.5px; color:var(--text-muted); }
+
+/* experience */
+.role-head{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; margin-bottom:18px; }
+.role-head h3{ font-size:21px; }
+.role-head .company{ color:var(--accent-2); font-weight:500; }
+.exp{ border-left:2px solid var(--accent-2); padding-left:26px; }
+.exp ul{ margin:0; padding-left:18px; color:var(--text-muted); font-size:15px; }
+.exp li{ margin-bottom:10px; }
+
+/* projects */
+.project{ display:grid; grid-template-columns:1fr 1fr; gap:48px; padding:40px 0; align-items:start; }
+.project:not(:last-child){ border-bottom:1px solid var(--border); }
+@media (max-width:860px){ .project{ grid-template-columns:1fr; gap:18px; } }
+.project h3{ font-size:22px; margin-bottom:6px; }
+.project .date{ font-size:13px; color:var(--text-muted); margin-bottom:16px; display:block; }
+.project ul{ color:var(--text-muted); font-size:15px; padding-left:18px; margin:0 0 18px; }
+.project li{ margin-bottom:8px; }
+.tags{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:16px; }
+.tag{ font-size:12.5px; padding:5px 11px; border-radius:var(--r-s); background:var(--surface-2); border:1px solid var(--border); color:var(--text-muted); }
+.plinks{ display:flex; gap:16px; flex-wrap:wrap; }
+.plinks a{ font-size:14px; text-decoration:none; color:var(--accent-2); border-bottom:1px solid transparent; }
+.plinks a:hover{ border-color:var(--accent-2); }
+
+/* skills */
+.skill-row{ display:grid; grid-template-columns:220px 1fr; gap:24px; padding:18px 0; border-top:1px solid var(--border); }
+.skill-row:first-of-type{ border-top:none; }
+.skill-row h4{ font-family:var(--font-head); font-size:15px; font-weight:600; margin:0; }
+@media (max-width:640px){ .skill-row{ grid-template-columns:1fr; gap:10px; } }
+
+/* edu + certs */
+.split{ display:grid; grid-template-columns:1fr 1fr; gap:56px; }
+@media (max-width:760px){ .split{ grid-template-columns:1fr; gap:40px; } }
+.split h3{ font-size:18px; margin-bottom:18px; }
+.item{ margin-bottom:20px; }
+.item .t{ font-weight:500; }
+.item .d{ font-size:13.5px; color:var(--text-muted); }
+
+/* contact */
+.contact{ text-align:left; }
+.contact h2{ font-size:clamp(28px,3.6vw,40px); margin-bottom:16px; max-width:12ch; }
+.contact-links{ display:flex; gap:14px; flex-wrap:wrap; margin-top:28px; }
+.iconlink{ display:inline-flex; align-items:center; gap:9px; padding:11px 18px; border:1px solid var(--border); border-radius:var(--r-l); font-size:14px; text-decoration:none; transition:border-color .15s; }
+.iconlink:hover{ border-color:var(--accent-2); }
+footer{ padding:28px 0; text-align:left; font-size:13px; color:var(--text-muted); border-top:1px solid var(--border); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap navrow">
+    <a class="brand" href="#top">Shyamaray Aravattu</a>
+    <button class="navtoggle" aria-label="Toggle menu" onclick="document.getElementById('navlinks').classList.toggle('open')">☰</button>
+    <ul class="navlinks" id="navlinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow">AI Engineer · Generative AI · RAG · LLM Applications</p>
+      <h1>AI systems that retrieve, reason, and respond.</h1>
+      <p class="hero-sub">I build Retrieval-Augmented Generation and agentic LLM applications with LangChain, LangGraph, and FastAPI — shipped into production and monitored through LangSmith observability.</p>
+      <div class="hero-cta">
+        <a class="btn btn-solid" href="#projects">View projects</a>
+        <a class="btn btn-outline" href="#contact">Get in touch</a>
+      </div>
+      <div class="hero-meta">
+        <span>Bengaluru, India</span>
+        <span>Currently at Wizzybox Pvt Ltd</span>
+      </div>
+    </div>
+    <div class="term">
+      <div class="term-bar"><span></span><span></span><span></span></div>
+      <div class="term-body">
+        <div class="term-line"><span class="term-tag">query ›</span> <span class="term-q">What does the uploaded contract say about refunds?</span></div>
+        <div class="term-line"><span class="term-tag">rag-chatbot ›</span> <span class="term-a" id="typed"></span><span class="cursor"></span></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap about-grid">
+    <div>
+      <p class="eyebrow">About</p>
+      <p>I'm an AI Engineer based in Bengaluru, focused on turning large language models into dependable products — grounding them in real documents through retrieval, orchestrating multi-step reasoning with LangGraph, and keeping a close eye on latency and cost once they're in production.</p>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>4</b><span>AI/ML solutions shipped</span></div>
+      <div class="stat"><b>500+</b><span>Queries handled weekly</span></div>
+      <div class="stat"><b>30%</b><span>Latency reduction</span></div>
+      <div class="stat"><b>25%</b><span>LLM API cost cut</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <p class="eyebrow">Experience</p>
+    <div class="role-head">
+      <h3>AI Engineer Intern — <span class="company">Wizzybox Pvt Ltd</span></h3>
+      <span class="muted">Jan 2026 – Present · Bengaluru (On-site)</span>
+    </div>
+    <div class="exp">
+      <ul>
+        <li>Developed 4 AI/ML solutions using Python, traditional machine learning, and Generative AI, applying model optimization and evaluation to build real-world applications.</li>
+        <li>Built and integrated LLM-powered applications with RAG pipelines using LangChain and LangGraph, handling over 500 queries per week.</li>
+        <li>Designed AI workflows for data processing, model inference, and prompt engineering, reducing response latency by 30%.</li>
+        <li>Integrated AI models with FastAPI, REST APIs, databases, and backend services to ship 2 production-oriented applications.</li>
+        <li>Collaborated with cross-functional teams to design, test, debug, and deploy scalable AI applications.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <p class="eyebrow" style="margin-bottom:36px;">Projects</p>
+
+    <div class="project">
+      <div>
+        <h3>Domain-Specific RAG Chatbot</h3>
+        <span class="date">May 2026</span>
+        <ul>
+          <li>Context-aware Q&A over uploaded PDFs across 5 domains: Healthcare, AI, Blockchain, Finance, and Legal.</li>
+          <li>End-to-end retrieval pipeline: text chunking, 384-dim embeddings, FAISS indexing, and semantic similarity search.</li>
+        </ul>
+      </div>
+      <div>
+        <div class="tags"><span class="tag">Python</span><span class="tag">LangChain</span><span class="tag">FAISS</span><span class="tag">Ollama</span><span class="tag">Hugging Face</span></div>
+        <p class="muted" style="font-size:14.5px; margin-bottom:16px;">Responses are grounded in retrieved document context, with out-of-context query handling to reduce irrelevant answers.</p>
+        <div class="plinks"><a href="#">View project →</a></div>
+      </div>
+    </div>
+
+    <div class="project">
+      <div>
+        <h3>AI Blog Generation Platform</h3>
+        <span class="date">Aug 2026</span>
+        <ul>
+          <li>Conversational Q&A and automated blog generation using FastAPI, LangChain, and LangGraph.</li>
+          <li>Sequential LangGraph workflow: generates a blog outline first, then uses it as context for final generation.</li>
+        </ul>
+      </div>
+      <div>
+        <div class="tags"><span class="tag">LangChain</span><span class="tag">LangGraph</span><span class="tag">LangSmith</span><span class="tag">FastAPI</span><span class="tag">Neon DB</span></div>
+        <p class="muted" style="font-size:14.5px; margin-bottom:16px;">LangSmith observability tracked execution traces, token usage, and latency — used to cut LLM API costs by 25%.</p>
+        <div class="plinks"><a href="#">Backend →</a><a href="#">Frontend →</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <p class="eyebrow" style="margin-bottom:8px;">Skills</p>
+    <div class="skill-row"><h4>Programming & databases</h4><div class="tags"><span class="tag">Python</span><span class="tag">SQL</span></div></div>
+    <div class="skill-row"><h4>ML & NLP</h4><div class="tags"><span class="tag">Supervised learning</span><span class="tag">Model evaluation</span><span class="tag">Neural network training</span><span class="tag">Tokenization</span><span class="tag">Embeddings</span></div></div>
+    <div class="skill-row"><h4>Generative AI</h4><div class="tags"><span class="tag">LLMs</span><span class="tag">RAG</span><span class="tag">LangChain</span><span class="tag">LangGraph</span><span class="tag">Prompt engineering</span><span class="tag">Agentic AI</span></div></div>
+    <div class="skill-row"><h4>Tools & deployment</h4><div class="tags"><span class="tag">Git</span><span class="tag">GitHub</span><span class="tag">PyCharm</span><span class="tag">LangSmith</span><span class="tag">Render</span><span class="tag">Railway</span><span class="tag">Hugging Face</span></div></div>
+    <div class="skill-row"><h4>Backend</h4><div class="tags"><span class="tag">FastAPI</span><span class="tag">REST APIs</span><span class="tag">API integration</span><span class="tag">Vector databases</span></div></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap split">
+    <div>
+      <h3>Education</h3>
+      <div class="item">
+        <div class="t">B.E. in Computer Science and Engineering</div>
+        <div class="d">Government Engineering College, Nargund, Karnataka</div>
+        <div class="d">Sep 2022 – May 2026</div>
+      </div>
+    </div>
+    <div>
+      <h3>Certifications</h3>
+      <div class="item">
+        <div class="t">Machine Learning Specialization — DeepLearning.AI</div>
+        <div class="d">Dec 2023 · Supervised learning, advanced learning algorithms, unsupervised learning, neural networks, reinforcement learning</div>
+      </div>
+      <div class="item">
+        <div class="t">Python for Data Science — IIT Madras</div>
+        <div class="d">Aug 2023 · NumPy, Pandas, Matplotlib, data collection & visualization</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="wrap">
+    <p class="eyebrow">Contact</p>
+    <h2>Let's build something grounded.</h2>
+    <p class="hero-sub" style="margin-bottom:0;">Open to AI engineering roles and collaborations on RAG and agentic systems.</p>
+    <div class="contact-links">
+      <a class="iconlink" href="mailto:aravattusham@gmail.com">✉ Email</a>
+      <a class="iconlink" href="tel:+918088617556">☎ +91 80886 17556</a>
+      <a class="iconlink" href="https://www.linkedin.com/in/shyamarayaravattu" target="_blank" rel="noopener">in LinkedIn</a>
+      <a class="iconlink" href="https://github.com/shyamarayaravattu" target="_blank" rel="noopener">⌥ GitHub</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">© 2026 Shyamaray Aravattu · Built with HTML, CSS & JS</div>
+</footer>
+
+<script>
+(function(){
+  var text = "According to Section 4.2 of the uploaded document, refunds are processed within 14 days...";
+  var el = document.getElementById('typed');
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduced){ el.textContent = text; return; }
+  var i = 0;
+  function tick(){
+    if(i <= text.length){ el.textContent = text.slice(0,i); i++; setTimeout(tick, 18); }
+  }
+  tick();
+})();
+</script>
+</body>
+</html>
